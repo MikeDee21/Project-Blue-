@@ -8,4 +8,3 @@ public enum FishType
 public class FIshType : MonoBehaviour
 {
 }
-
