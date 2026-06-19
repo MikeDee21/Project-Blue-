@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private int currHullStrength;
     [SerializeField] private int maxHullStrength;
+
+    private Transform playerTransform; 
     void Start()
     {
         currHullStrength = 3;
@@ -32,6 +34,10 @@ public class Player : MonoBehaviour
         }
     }
 
+    public Transform GetPlayerTransform
+    {
+        get => transform; 
+    }
     public int GetCurrHP 
     {
         get => currHullStrength; 
