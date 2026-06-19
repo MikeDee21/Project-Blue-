@@ -135,6 +135,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d95320ce012f4c4a8cdf6187da04d03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!1 &355720766 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4692435047429734056, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+  m_PrefabInstance: {fileID: 1275356715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &365974737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -619,12 +624,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1814782571442046751, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
   m_PrefabInstance: {fileID: 1275356715}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1020413845}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!1 &714321233 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7580011438131292984, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+  m_PrefabInstance: {fileID: 1275356715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &724778693
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,6 +724,26 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3714074037173389352, guid: 25701d170e7ebdb4881aa6ad6f17de5a, type: 3}
   m_PrefabInstance: {fileID: 616183127}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1020413845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9197335178549191892, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+  m_PrefabInstance: {fileID: 1275356715}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1020413849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1020413845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 12, y: -12}
+  m_UseGraphicAlpha: 0
 --- !u!114 &1101551392 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6615865581858074458, guid: 8ddd635709c6e934cb7cf0dee6cd82b2, type: 3}
@@ -730,12 +760,32 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8697418180506023963, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
   m_PrefabInstance: {fileID: 1275356715}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 355720766}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1161765550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355720766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 12, y: -12}
+  m_UseGraphicAlpha: 0
+--- !u!1 &1210711073 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2732159015323538921, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+  m_PrefabInstance: {fileID: 1275356715}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1275356715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -824,6 +874,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7719485738100101770, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719485738100101770, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7719485738100101770, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8899123497575795910, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
       propertyPath: m_Name
       value: ScanMinigameCanvas
@@ -835,7 +897,19 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2732159015323538921, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1946656173}
+    - targetCorrespondingSourceObject: {fileID: 4692435047429734056, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1161765550}
+    - targetCorrespondingSourceObject: {fileID: 9197335178549191892, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1020413849}
+    - targetCorrespondingSourceObject: {fileID: 7580011438131292984, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1816190402}
   m_SourcePrefab: {fileID: 100100000, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
 --- !u!1 &1291824600 stripped
 GameObject:
@@ -994,23 +1068,53 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5355574971572017531, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
   m_PrefabInstance: {fileID: 1275356715}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 714321233}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1816190402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 714321233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 12, y: -12}
+  m_UseGraphicAlpha: 1
 --- !u!114 &1946656169 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7719485738100101770, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
   m_PrefabInstance: {fileID: 1275356715}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1210711073}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+--- !u!114 &1946656173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210711073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e19747de3f5aca642ab2be37e372fb86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Outline
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 12, y: -12}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2037976598 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8899123497575795910, guid: 36684f0fc799d9c449f563ed300bb758, type: 3}
@@ -1101,6 +1205,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 315395459}
+    - target: {fileID: 1245293234561219079, guid: 2216792eccc1445428809ad202917374, type: 3}
+      propertyPath: mainCamera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 1245293234561219079, guid: 2216792eccc1445428809ad202917374, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 315395456}
     - target: {fileID: 2888070523591342730, guid: 2216792eccc1445428809ad202917374, type: 3}
       propertyPath: m_IsActive
       value: 0
