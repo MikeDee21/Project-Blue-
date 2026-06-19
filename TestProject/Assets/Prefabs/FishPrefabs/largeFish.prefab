@@ -10,8 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8178696102306191449}
   - component: {fileID: 4430323764960959195}
+  - component: {fileID: 4101053265841908090}
   - component: {fileID: 4578962255257501073}
-  m_Layer: 0
+  - component: {fileID: -6516108965649966434}
+  m_Layer: 7
   m_Name: largeFish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -82,8 +84,8 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.06906373, g: 0.1509434, b: 0.081735566, a: 1}
+  m_Sprite: {fileID: -2413806693520163455, guid: 98b4580c0dfe7b343bee7ae70ded31e4, type: 3}
+  m_Color: {r: 0.4457946, g: 0.43081754, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -92,6 +94,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &4101053265841908090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6046707945350240971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2634a02efee43c246b882cca9c793c6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TestFish
+  fishType: 2
+  alreadyScanned: 0
+  highlightAlpha: 0.25
+  highlightTint: {r: 0, g: 1, b: 1, a: 0.4}
 --- !u!114 &4578962255257501073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,3 +123,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Fauna
   fishType: 2
+--- !u!58 &-6516108965649966434
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6046707945350240971}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
