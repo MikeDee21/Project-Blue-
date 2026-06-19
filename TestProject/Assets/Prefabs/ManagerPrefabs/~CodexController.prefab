@@ -1,0 +1,439 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4363965007950127340
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 596328088613605151}
+  - component: {fileID: 8138723596770070095}
+  m_Layer: 0
+  m_Name: ~CodexController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &596328088613605151
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363965007950127340}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8138723596770070095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4363965007950127340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a40ba246606b23944b5c0dc49e9a6241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FishCodex
+  FishEntries:
+  - Name: Reef Shark
+    Description: 'Reef Sharks are slender, agile predators that inhabit tropical
+      and subtropical coral reefs. They have streamlined bodies, rounded snouts,
+      and distinct fin markings. They are vital to maintaining marine ecosystem health
+      by keeping smaller predators in check, balancing the food chain.
+
+
+
+      Average
+      size of 3 to 6 feet in length.
+
+
+
+      The earliest scientific description
+      of Reef sharks was back in 1824.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Barracuda
+    Description: 'Barracudas are sleek, aggressive predatory fish belonging to the
+      family Sphyraenidae, renowned for their fearsome appearance, explosive speed,
+      and dagger-like teeth. Found globally in warm, tropical, and subtropical waters,
+      they are highly efficient ambush hunters that patrol coral reefs, mangroves,
+      and seagrass beds.
+
+
+      Average size of 2 to 3 feet in length.
+
+
+
+      The
+      earliest scientific description of the Barracuda was back in 1771.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Manta Ray
+    Description: 'Manta rays are majestic, harmless giants of the ocean known for
+      their massive, diamond-shaped bodies, horn-like facial fins, and graceful,
+      bird-like swimming motions. Unlike stingrays, they possess no stinging venomous
+      spine and are completely gentle filter feeders.
+
+
+      Average size of 10
+      to 11 feet in length.
+
+
+      The earliest scientific description of the Manta
+      Ray was back in 1792.'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Jellyfish
+    Description: "Jellyfish are ancient, free-swimming marine invertebrates belonging
+      to the phylum Cnidaria, defined by their gelatinous, umbrella-shaped bells
+      and trailing, stinging tentacles. They have drifted in the world's oceans for
+      over 500 million years, making them older than dinosaurs, and they completely
+      lack brains, hearts, bones, or blood. \r\n\nAverage size of 2 to 6 feet in
+      length.\r\n\nThe earliest scientific description of the Jellyfish was back
+      in 1758.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Clownfish
+    Description: "Clownfish (also called anemonefish) are small, brightly colored
+      marine fish belonging to the subfamily Amphiprioninae. Found in the warm waters
+      of the Indian and Pacific Oceans, they are famous for their strict symbiotic
+      relationship with venomous sea anemones, which protect them from predators.
+      \r\n\nAverage size of 0.25 to 0.3 foot in length.\r\n\nThe earliest scientific
+      description of the Clownfish was back in 1830.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Rabbitfish
+    Description: 'Rabbitfish (belonging to the family Siganidae) are small to medium-sized,
+      herbivorous marine fish found throughout shallow coastal waters, coral reefs,
+      and seagrass beds in the Indo-Pacific and eastern Mediterranean. They are named
+      for their unique, rabbit-like snouts and grazing habits.
+
+
+      Average size
+      of 0.65 to 1 foot in length.
+
+
+      The earliest scientific description of
+      the Rabbitfish was back in 1775.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Sardine
+    Description: "Sardines (also known as pilchards) are small, nutrient-rich schooling
+      fish belonging to the herring family Clupeidae. Found globally in massive coastal
+      upwelling zones, they are essential filter feeders that serve as the fundamental
+      foundation of the marine food web. \r\n\nAverage size of 0.5 to 0.65 foot in
+      length.\r\n\nThe earliest scientific description of the Sardine was back in
+      1758.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Vampire Squid
+    Description: "Vampire Squids (Vampyroteuthis infernalis, which translates to
+      \"vampire squid from hell\") are unique, ancient cephalopods that inhabit the
+      deep, pitch-black waters of the ocean's twilight zone. Despite their name,
+      they are not true squids or octopuses, but rather the lone surviving members
+      of their own distinct evolutionary order (Vampyromorphida). \r\n\nAverage size
+      of 0.8 to 1 foot in length.\r\n\nThe earliest scientific description of the
+      Vampire Squid was back in 1903.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Pelican Eel
+    Description: "Pelican eels (also known as gulper eels or Eurypharynx pelecanoides)
+      are extraordinary, bizarre deep-sea fish inhabiting the ocean's twilight zone.
+      They are famous for their oversized, loosely hinged jaws and highly distensible
+      throats, which can inflate like a massive balloon to scoop up prey. \r\n\nAverage
+      size of 2 to 2.5 feet in length.\r\n\nThe earliest scientific description of
+      the Pelican Eel was back in 1882\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Dragonfish
+    Description: "Deep-sea dragonfish (belonging to the family Stomiidae) are terrifyingly
+      fierce, ambush predators that inhabit the twilight zone of the global ocean.
+      Despite looking like an alien nightmare with oversized, translucent fangs,
+      they are surprisingly small, highly specialized survivors of the extreme deep.
+      \r\n\nAverage size of 0.4 to 0.8 foot in length\r\n\nThe earliest scientific
+      description of the Dragonfish was back in 1833.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Hatchetfish
+    Description: 'Marine hatchetfish (belonging to the family Sternoptychidae) are
+      tiny, bizarre deep-sea fish that live in the ocean''s twilight zone. They get
+      their name from their extremely thin, razor-like bodies that perfectly resemble
+      the silver blade of a handaxe.
+
+
+      Average size of 0.1 to 0.25 foot in
+      length.
+
+
+      The earliest scientific description of the Hatchetfish was
+      back in 1856.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Spider Shark
+    Description: "Spider sharks are a bizarre and puzzling scientific anomaly of
+      a deep-sea fish, they possess the body of a shark but with multiple eyes that
+      correlate to a spider. They are the primary predator of the twilight zone as
+      it is very aggressive. They\u2019re the first ever anomaly discovered in the
+      New Mariana Trench.\r\n\nAverage size of 3 to 6 feet in length.\r\n\nThe earliest
+      scientific description of the Spider Shark was after the Anomaly Event of 2026.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Anglerfish
+    Description: "Anglerfish (belonging to the order Lophiiformes) are predatory
+      fish famously known for their terrifying appearance and highly specialized
+      hunting methods. Found worldwide, they range from shallow reefs to the pitch-black
+      Midnight Zone of the deep sea, defined by a modified dorsal fin spine that
+      functions like a fishing rod to lure prey. \r\n\nAverage size of 0.3 to 0.7
+      foot in length.\r\n\nThe earliest scientific description of the Anglerfish
+      was back in 1758.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Goblin Shark
+    Description: "Goblin sharks are rare, bottom-dwelling deep-sea sharks easily
+      recognized by their long, trowel-like snouts and highly extendable pink jaws.
+      They inhabit the Midnight Zone, usually cruising near the seafloor. \r\n\nAverage
+      size of 10 to 13 feet in length.\r\n\nThe earliest scientific description of
+      the Goblin Shark was back in 1898.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Giant Squid
+    Description: "The Giant Squid is an enormous deep-sea cephalopod that patrols
+      the Midnight Zone. They are aggressive hunters that actively chase down deep-sea
+      fish and other squid species. \r\n\nAverage size of 33 to 43 feet in length.\r\n\nThe
+      earliest scientific description of the Giant Squid was back in 1857.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Fincrab
+    Description: 'The Fincrab is an abomination that resembles the body of a Goblin
+      Shark mixed with the components and foundations of a Crab with the claws and
+      its extended legs that helps with its mobility. This anomaly is discovered
+      to be roaming the Midnight Zone.
+
+
+      Average size of 8 to 12 feet in length.
+
+
+      The
+      earliest scientific description of the Fincrab was after the Anomaly Event
+      of 2026
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Frilled Shark
+    Description: "Frilled sharks are primitive, eel-like sharks that live on the
+      outer continental shelves and upper slopes. They roam the deep seas of the
+      Midnight Zone. \r\n\nAverage size of 4.5 to 5.5 feet in length.\r\n\nThe earliest
+      scientific description of the Frilled Shark was back in 1884.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Tripod Fish
+    Description: 'The Tripod Fish is a bizarre, sedentary deep-sea creature that
+      lives in the crushing darkness of the Abyss Zone. They are famous for standing
+      completely still on the ocean floor like a camera tripod.
+
+
+      Average size
+      of 0.8 to 1 foot in length.
+
+
+      The earliest scientific description of
+      the Tripod Fish was back in 1887.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Skeletal Fish
+    Description: 'The Skeletal Fish is an anomaly that is known for its unusual skeletal-like
+      body, venturing the Abyss Zone, its skeletal body is a colony of microorganisms
+      that work together to make the creature function for them to look bigger as
+      to survive and have a chance in the food chain, altogether resembling a Skeletal
+      figure. It is the first recorded anomaly that is very passive unlike the others.
+
+
+      Average
+      size of 1 to 2.3 feet in length.
+
+
+      The earliest scientific description
+      of the Skeletal Fish was after the Anomaly Event of 2026.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Grisly Shark
+    Description: 'The Grisly Shark is an anomaly that is known for its horrific features
+      that feature different body parts throughout. It seems to attempt to mimic
+      the rest of the creatures in the Abyss Zone as a way to adapt and intimidate.
+      It roams the deep Abyss Zone.
+
+
+      Average size of 11 to 14 feet in length.
+
+
+      The
+      earliest scientific description of the Grisly Shark was after the Anomaly Event
+      of 2026.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: 'EMO '
+    Description: "The Enlarged Mutated Isopod is an armored, deep-sea crustacean
+      that acts as a prime example of deep-sea gigantism mixed with the New Mariana
+      Trench\u2019s anomaly event. Closely related to the tiny woodlice or \"pillbugs\"
+      found in backyards, these massive scavengers crawl along the mud of the Abyss
+      Zone. Due to the recent event, their size has grown tremendously and have been
+      mutated to where their mobility is now also enhanced.\t\r\n\nAverage size of
+      3 to 5 feet in length.\r\n\nThe earliest scientific description of the SEnlarged
+      Mutated Isopod was after the Anomaly Event of 2026.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Monster Eel
+    Description: 'The Monster Eel is the apex predator of the Abyss Zone. Known for
+      its tremendously long snake-like scaleless body, it resembles the identity
+      of the Conger Eel. The anomaly is known to be very vicious to other creatures
+      in the zone it shares as its appetite is known to be very short and fast due
+      to the pressure mixed with its size.
+
+
+      Average size of 20 to 25 feet
+      in length.
+
+
+      The earliest scientific description of the Monster Eel was
+      after the Anomaly Event of 2026.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Mariana Snailfish
+    Description: 'The Mariana snailfish (Pseudoliparis swirei) is a small, ghost-like
+      deep-sea fish famous for being the deepest dwelling fish ever captured on the
+      seafloor before the anomaly event. Thriving in the Hadal zone, they are the
+      undisputed apex predators of their extreme, crushing environment before the
+      anomaly event.
+
+
+      Average size of 0.5 to 0.8 foot in length.
+
+
+      The
+      earliest scientific description of the Mariana Snailfish was back in 2017.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Large Blood Snapper
+    Description: 'The Large Blood Snapper is a large anomaly recorded to be the very
+      first blood based anomaly that lives deep within the Hadal Zone, it is known
+      for its very bloody colored body that migrated from the Blood Zone after the
+      anomaly event to adapt to a new environment. It''s known for its snapping jaw
+      that immediately engulfs another creature in less than a second.
+
+
+      Average
+      size of 24 to 28 feet in length.
+
+
+      The earliest scientific description
+      of the Large Blood Snapper was after the Anomaly Event of 2026.
+
+
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Nightwing
+    Description: "The Nightwing is a large anomaly known for its night-like body
+      filled with various small lights that resemble stars in a midnight sky that
+      stands out in the Abyss Zone. It also has an outstanding body feature resembling
+      wings as its side fins. \r\n\nAverage size of 30 to 35 feet in length.\r\n\nThe
+      earliest scientific description of the Nightwing was after the Anomaly Event
+      of 2026.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Ancient Piranha
+    Description: 'The Ancient Piranhas are a previously-thought extinct species that
+      is now discovered to be still around as it was residing in the Blood Zone when
+      it was thought to be extinct. In comparison with the usual piranhas, it is
+      more grisly and bigger as it adapted towards the environment of the Blood Zone
+      but is now back and residing in the Hadal Zone.
+
+
+      Average size of 5
+      to 6 feet in length.
+
+
+      The earliest scientific description of the Ancient
+      Piranha was back in 2009.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Blood Burden
+    Description: 'Description for this anomaly remains unknown.
+
+
+      The average
+      size of the anomaly is currently unknown.
+
+
+      There is no scientific description
+      of this anomaly.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Blood Torment
+    Description: 'Description for this anomaly remains unknown.
+
+
+      The average
+      size of the anomaly is currently unknown.
+
+
+      There is no scientific description
+      of this anomaly.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: Grotesque Kingfish
+    Description: 'Description for this anomaly remains unknown.
+
+
+      The average
+      size of the anomaly is currently unknown.
+
+
+      There is no scientific description
+      of this anomaly.
+
+'
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
+  - Name: ???
+    Description: "Creature of its only remaining species that has survived the entirety
+      of Earth\u2019s history. \r\n\nThe average size of the anomaly is currently
+      unknown.\r\n\nThere is no scientific description of this anomaly.\r\n"
+    FishImage: {fileID: 0}
+    IsUnlocked: 0
