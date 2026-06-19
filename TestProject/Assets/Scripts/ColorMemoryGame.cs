@@ -52,6 +52,7 @@ public class ColorMemoryGame : MonoBehaviour
 
     public void StartScanMinigame()
     {
+        Debug.Log("StartScanMinigame CALLED");
         MiniGameState.Reset();
 
         // Show UI when minigame starts

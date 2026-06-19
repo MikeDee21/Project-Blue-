@@ -4,10 +4,14 @@ public class PlayerController : MonoBehaviour
 {
     private float moveForce;
     private float maxSpeed;
+    public float interactDistance = 3f;
 
     private ColorMemoryGame colorMemoryGame;
 
     private Vector2 moveInput;
+
+    public Camera playerCamera;
+    public GameObject scanPromptUI;
 
     [SerializeField]private Rigidbody2D rb; 
 
@@ -25,7 +29,12 @@ public class PlayerController : MonoBehaviour
     {
         GetMoveInput();
         MouseTracker();
-        ScanFish();
+        HandleHoverUI();
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            ScanFish();
+        }
+
     }
     private void FixedUpdate()
     {
@@ -53,9 +62,74 @@ public class PlayerController : MonoBehaviour
 
     private void ScanFish()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
+
+        if (hit.collider == null)
         {
-            colorMemoryGame.StartScanMinigame();
+            Debug.Log("NO HIT");
+            return;
+        }
+
+        Debug.Log("HIT: " + hit.collider.name);
+
+        TestFish fish = hit.collider.GetComponentInParent<TestFish>();
+
+        if (fish == null)
+        {
+            Debug.Log("HIT OBJECT IS NOT FISH");
+            return;
+        }
+
+        if (fish.alreadyScanned)
+        {
+            Debug.Log("ALREADY SCANNED");
+            return;
+        }
+
+        Debug.Log("STARTING MINIGAME ON: " + fish.name);
+
+        float distance = Vector2.Distance(transform.position, fish.transform.position);
+
+        if (distance > interactDistance)
+        {
+            Debug.Log("Too far to scan fish");
+            return;
+        }
+
+        fish.alreadyScanned = true;
+        colorMemoryGame.StartScanMinigame();
+    }
+
+    void HandleHoverUI()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
+
+        if (hit.collider == null)
+        {
+            scanPromptUI.SetActive(false);
+            return;
+        }
+
+        TestFish fish = hit.collider.GetComponentInParent<TestFish>();
+
+        if (fish == null || fish.alreadyScanned)
+        {
+            scanPromptUI.SetActive(false);
+            return;
+        }
+
+        float distance = Vector2.Distance(transform.position, fish.transform.position);
+
+        if (distance <= interactDistance)
+        {
+            scanPromptUI.SetActive(true);
+        }
+        else
+        {
+            scanPromptUI.SetActive(false);
         }
     }
 
