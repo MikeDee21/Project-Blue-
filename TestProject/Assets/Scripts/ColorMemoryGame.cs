@@ -5,122 +5,155 @@ using UnityEngine.UI;
 
 public class ColorMemoryGame : MonoBehaviour
 {
-    [Header("UI")]
-    public GameObject minigameUI;
+    [Header("UI ROOT")]
+    [SerializeField] private GameObject scanMinigamePanelGO;
+    [SerializeField] private RectTransform scanMinigamePanel;
+
+    [SerializeField] private float slideDuration = 0.5f;
+
+    private Vector2 shownPosition;
+    private Vector2 hiddenPosition;
 
     [Header("Buttons")]
-    public Button redButton;
-    public Button blueButton;
-    public Button greenButton;
-    public Button yellowButton;
-
-    [Header("Flash Settings")]
-    public float flashDuration = 0.5f;
-    public float flashDelay = 0.25f;
-
-    [Header("Game Settings")]
-    public int sequenceLength = 4;
-
-    private List<int> sequence = new List<int>();
+    [SerializeField] private Button redButton;
+    [SerializeField] private Button blueButton;
+    [SerializeField] private Button greenButton;
+    [SerializeField] private Button yellowButton;
 
     private Image redImage;
     private Image blueImage;
     private Image greenImage;
     private Image yellowImage;
 
+    [Header("Game Settings")]
+    [SerializeField] private int sequenceLength = 4;
+
+    [Header("Flash Settings")]
+    [SerializeField] private float flashDuration = 0.4f;
+    [SerializeField] private float flashDelay = 0.25f;
+
+    private List<int> sequence = new List<int>();
     private int currentInputIndex;
     private bool acceptingInput;
+    private bool isRunning;
+    public static bool IsActive;
 
-    void Start()
+    // =========================
+    // INIT
+    // =========================
+    private void Awake()
     {
-        // Hide UI at game start
-        if (minigameUI != null)
-            minigameUI.SetActive(false);
+        shownPosition = scanMinigamePanel.anchoredPosition;
+        hiddenPosition = shownPosition + new Vector2(0, Screen.height);
 
-        // Cache button images
+        scanMinigamePanel.anchoredPosition = hiddenPosition;
+
+        scanMinigamePanelGO.SetActive(false);
+    }
+
+    private void Start()
+    {
         redImage = redButton.GetComponent<Image>();
         blueImage = blueButton.GetComponent<Image>();
         greenImage = greenButton.GetComponent<Image>();
         yellowImage = yellowButton.GetComponent<Image>();
 
-        // Button listeners
         redButton.onClick.AddListener(() => PlayerInput(0));
         blueButton.onClick.AddListener(() => PlayerInput(1));
         greenButton.onClick.AddListener(() => PlayerInput(2));
         yellowButton.onClick.AddListener(() => PlayerInput(3));
     }
 
+    // =========================
+    // START MINIGAME
+    // =========================
     public void StartScanMinigame()
     {
-        Debug.Log("StartScanMinigame CALLED");
-        MiniGameState.Reset();
+        IsActive = true;
+        if (isRunning) return;
 
-        // Show UI when minigame starts
-        if (minigameUI != null)
-            minigameUI.SetActive(true);
+        isRunning = true;
+        StopAllCoroutines();
+
+        MiniGameState.Reset();
 
         sequence.Clear();
         currentInputIndex = 0;
         acceptingInput = false;
 
         for (int i = 0; i < sequenceLength; i++)
-        {
             sequence.Add(Random.Range(0, 4));
-        }
 
-        StartCoroutine(ShowSequence());
+        StartCoroutine(RunMinigame());
     }
 
-    IEnumerator ShowSequence()
+    // =========================
+    // MAIN FLOW
+    // =========================
+    private IEnumerator RunMinigame()
     {
-        yield return new WaitForSeconds(0.5f);
+        scanMinigamePanelGO.SetActive(true);
 
-        foreach (int color in sequence)
-        {
-            yield return FlashColor(color);
-            yield return new WaitForSeconds(flashDelay);
-        }
+        Time.timeScale = 0f;
+
+        yield return SlidePanel(shownPosition);
+
+        yield return ShowSequence();
 
         acceptingInput = true;
     }
 
-    IEnumerator FlashColor(int colorIndex)
+    // =========================
+    // SEQUENCE
+    // =========================
+    private IEnumerator ShowSequence()
     {
-        Image target = GetImage(colorIndex);
+        yield return new WaitForSecondsRealtime(0.5f);
 
-        Color originalColor = target.color;
+        foreach (int i in sequence)
+        {
+            yield return FlashColor(i);
+            yield return new WaitForSecondsRealtime(flashDelay);
+        }
+    }
+
+    private IEnumerator FlashColor(int index)
+    {
+        Image target = GetImage(index);
+        if (target == null) yield break;
+
+        Color original = target.color;
 
         target.color = Color.white;
-        yield return new WaitForSeconds(flashDuration);
-        target.color = originalColor;
+        yield return new WaitForSecondsRealtime(flashDuration);
+        target.color = original;
     }
 
-    Image GetImage(int index)
+    private Image GetImage(int index)
     {
-        switch (index)
+        return index switch
         {
-            case 0: return redImage;
-            case 1: return blueImage;
-            case 2: return greenImage;
-            case 3: return yellowImage;
-        }
-
-        return null;
+            0 => redImage,
+            1 => blueImage,
+            2 => greenImage,
+            3 => yellowImage,
+            _ => null
+        };
     }
 
+    // =========================
+    // INPUT
+    // =========================
     public void PlayerInput(int colorIndex)
     {
-        if (!acceptingInput)
-            return;
+        if (!acceptingInput) return;
 
-        if (colorIndex == sequence[currentInputIndex])
+        if (sequence[currentInputIndex] == colorIndex)
         {
             currentInputIndex++;
 
             if (currentInputIndex >= sequence.Count)
-            {
                 WinGame();
-            }
         }
         else
         {
@@ -128,27 +161,70 @@ public class ColorMemoryGame : MonoBehaviour
         }
     }
 
-    void WinGame()
+    // =========================
+    // END GAME
+    // =========================
+    private void WinGame()
     {
-        acceptingInput = false;
-
+        IsActive = false;
         MiniGameState.ScanMinigameWon = true;
-
-        if (minigameUI != null)
-            minigameUI.SetActive(false);
-
-        Debug.Log("Memory Game Won");
+        EndMinigame();
     }
 
-    void LoseGame()
+    private void LoseGame()
     {
-        acceptingInput = false;
-
+        IsActive = false;
         MiniGameState.ScanMinigameLost = true;
+        EndMinigame();
+    }
 
-        if (minigameUI != null)
-            minigameUI.SetActive(false);
+    private void EndMinigame()
+    {
+        if (!isRunning) return;
 
-        Debug.Log("Memory Game Lost");
+        acceptingInput = false;
+        StartCoroutine(CloseRoutine());
+    }
+
+    private IEnumerator CloseRoutine()
+    {
+        yield return SlidePanel(hiddenPosition);
+
+        scanMinigamePanelGO.SetActive(false);
+
+        Time.timeScale = 1f;
+
+        isRunning = false;
+
+        FindFirstObjectByType<PlayerController>()?.HandleScanResult();
+    }
+
+    // =========================
+    // SLIDE SYSTEM
+    // =========================
+    private IEnumerator SlidePanel(Vector2 target)
+    {
+        Vector2 start = scanMinigamePanel.anchoredPosition;
+
+        float t = 0f;
+
+        while (t < slideDuration)
+        {
+            t += Time.unscaledDeltaTime;
+
+            float p = Mathf.SmoothStep(0f, 1f, t / slideDuration);
+
+            scanMinigamePanel.anchoredPosition =
+                Vector2.Lerp(start, target, p);
+
+            yield return null;
+        }
+
+        scanMinigamePanel.anchoredPosition = target;
+    }
+
+    public void CloseMinigame()
+    {
+        StartCoroutine(CloseRoutine());
     }
 }

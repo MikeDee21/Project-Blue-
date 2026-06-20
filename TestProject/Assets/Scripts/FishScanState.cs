@@ -12,7 +12,10 @@ public class TestFish : MonoBehaviour
 
     [Header("Fish Data")]
     public FishType fishType;
-    public bool alreadyScanned = false;
+    public float scanCooldown;
+    public bool alreadyScanned;
+    public bool isLocked;
+    public float lockTimer;
 
     private SpriteRenderer sr;
     private Color originalColor;
@@ -22,6 +25,20 @@ public class TestFish : MonoBehaviour
     public float highlightAlpha = 0.25f;
 
     public Color highlightTint = new Color(0f, 1f, 1f, 1f);
+
+    private void Update()
+    {
+        if (isLocked)
+        {
+            scanCooldown -= Time.deltaTime;
+
+            if (scanCooldown <= 0f)
+            {
+                isLocked = false;
+                scanCooldown = 0f;
+            }
+        }
+    }
 
     void Awake()
     {
@@ -46,5 +63,11 @@ public class TestFish : MonoBehaviour
         {
             sr.color = originalColor;
         }
+    }
+
+    public void LockScan(float duration)
+    {
+        isLocked = true;
+        lockTimer = duration;
     }
 }
