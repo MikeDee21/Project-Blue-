@@ -45,6 +45,10 @@ public class Player : MonoBehaviour
     }
     public void DamagePlayer(int dmg)
     {
-        currHullStrength -= dmg; 
+        currHullStrength -= dmg;
+        if (PlayerHUDManager.instance != null)
+        {
+            PlayerHUDManager.instance.ShakeScreen();
+        }
     }
 }

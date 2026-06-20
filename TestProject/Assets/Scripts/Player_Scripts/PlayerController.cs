@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     private float maxSpeed;
 
     public float interactDistance = 3f;
+    private TestFish lastScannedFish;
 
     private ColorMemoryGame colorMemoryGame;
     private TestFish currentFish;
@@ -14,8 +15,16 @@ public class PlayerController : MonoBehaviour
 
     public Camera playerCamera;
     public GameObject scanPromptUI;
+    private Rigidbody2D rb;
 
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float holdTime = 1.5f;
+    [SerializeField] private UnityEngine.UI.Slider holdBarUI;
+
+    private float holdTimer;
+    private bool isHolding;
+    private float scanProgress;
+    [SerializeField] private float scanSpeed = 1f;
+    [SerializeField] private float scanDecay = 1.5f;
 
     private void Awake()
     {
@@ -34,13 +43,8 @@ public class PlayerController : MonoBehaviour
     {
         GetMoveInput();
         MouseTracker();
-
         HandleHoverUI();
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            ScanFish();
-        }
+        HandleScanHold();
     }
 
     private void FixedUpdate()
@@ -72,33 +76,15 @@ public class PlayerController : MonoBehaviour
 
     private void ScanFish()
     {
-        Vector2 worldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        RaycastHit2D hit = Physics2D.Raycast(worldPos, Vector2.zero);
-
-        if (hit.collider == null)
-        {
-            Debug.Log("NO HIT");
+        if (currentFish == null)
             return;
-        }
 
-        Debug.Log("HIT: " + hit.collider.name);
-
-        TestFish fish = hit.collider.GetComponentInParent<TestFish>();
-
-        if (fish == null)
-        {
-            Debug.Log("HIT OBJECT IS NOT FISH");
-            return;
-        }
+        TestFish fish = currentFish;
 
         float distance = Vector2.Distance(transform.position, fish.transform.position);
 
         if (distance > interactDistance)
-        {
-            Debug.Log("TOO FAR");
             return;
-        }
 
         if (fish.alreadyScanned)
         {
@@ -106,26 +92,40 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        if (fish.isLocked)
+        {
+            Debug.Log("FISH ON COOLDOWN");
+            return;
+        }
+
         Debug.Log("STARTING MINIGAME: " + fish.name);
 
-        fish.alreadyScanned = true;
+        lastScannedFish = fish;
 
         colorMemoryGame.StartScanMinigame();
     }
 
     private void HandleHoverUI()
     {
+        if (ColorMemoryGame.IsActive)
+        {
+            if (currentFish != null)
+                currentFish.SetHighlighted(false);
+
+            currentFish = null;
+            scanPromptUI.SetActive(false);
+            return;
+        }
+
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit2D hit = Physics2D.GetRayIntersection(ray);
 
         TestFish newFish = null;
 
         if (hit.collider != null)
-        {
             newFish = hit.collider.GetComponentInParent<TestFish>();
-        }
 
-        // handle hover switching ONLY
+        // ✔ if hovered fish changed, remove highlight from old one
         if (newFish != currentFish)
         {
             if (currentFish != null)
@@ -134,22 +134,132 @@ public class PlayerController : MonoBehaviour
             currentFish = newFish;
         }
 
-        // continuously evaluate current hovered fish
+        bool valid = false;
+
         if (currentFish != null)
         {
             float distance = Vector2.Distance(transform.position, currentFish.transform.position);
+            valid =
+                distance <= interactDistance &&
+                !currentFish.isLocked &&
+                !currentFish.alreadyScanned;
 
-            bool valid = distance <= interactDistance && !currentFish.alreadyScanned;
-
-            // highlight updates EVERY FRAME
             currentFish.SetHighlighted(valid);
+        }
 
-            // UI logic
-            scanPromptUI.SetActive(valid);
+        scanPromptUI.SetActive(valid);
+    }
+
+    private void ResetHold()
+    {
+        holdTimer = 0f;
+
+        if (holdBarUI != null)
+        {
+            holdBarUI.value = 0;
+            holdBarUI.gameObject.SetActive(false);
+        }
+    }
+
+    private void HandleScanHold()
+    {
+        if (ColorMemoryGame.IsActive)
+        {
+            ResetScan();
+            return;
+        }
+
+        if (currentFish == null)
+        {
+            ResetScan();
+            return;
+        }
+
+        float distance = Vector2.Distance(transform.position, currentFish.transform.position);
+
+        bool validTarget =
+            distance <= interactDistance &&
+            !currentFish.isLocked &&
+            !currentFish.alreadyScanned;
+
+        if (Input.GetKey(KeyCode.E) && validTarget)
+        {
+            scanProgress += Time.deltaTime * scanSpeed;
         }
         else
         {
-            scanPromptUI.SetActive(false);
+            scanProgress -= Time.deltaTime * scanDecay;
         }
+
+        scanProgress = Mathf.Clamp01(scanProgress);
+
+        holdBarUI.gameObject.SetActive(scanProgress > 0f);
+        holdBarUI.value = scanProgress;
+
+        if (scanProgress >= 1f)
+        {
+            CompleteScan();
+        }
+    }
+
+    private void CompleteScan()
+    {
+        if (currentFish == null)
+        {
+            ResetScan();
+            return;
+        }
+
+        scanProgress = 0f;
+        holdBarUI.value = 0f;
+        holdBarUI.gameObject.SetActive(false);
+
+        ScanFish();
+    }
+
+    private void ResetScan()
+    {
+        scanProgress = 0f;
+        holdBarUI.value = 0f;
+        holdBarUI.gameObject.SetActive(false);
+    }
+
+    public void HandleScanResult()
+    {
+        if (lastScannedFish == null)
+            return;
+
+        if (MiniGameState.ScanMinigameWon)
+        {
+            StartCoroutine(DespawnFish(lastScannedFish));
+        }
+        else if (MiniGameState.ScanMinigameLost)
+        {
+            lastScannedFish.isLocked = true;
+            lastScannedFish.scanCooldown = 15f;
+        }
+
+        MiniGameState.ScanMinigameWon = false;
+        MiniGameState.ScanMinigameLost = false;
+
+        lastScannedFish = null;
+    }
+
+    private System.Collections.IEnumerator DespawnFish(TestFish fish)
+    {
+        float t = 0f;
+
+        Vector3 startScale = fish.transform.localScale;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime;
+
+            fish.transform.localScale = Vector3.Lerp(startScale, Vector3.zero, t);
+
+            yield return null;
+        }
+
+        Destroy(fish.gameObject);
     }
 }
