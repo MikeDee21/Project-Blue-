@@ -104,7 +104,7 @@ public class DepthDetection : MonoBehaviour
 
     private void UpdateDepthUI()
     {
-        depthText.text = $"Current Depth: {depthMeter:F0} Meters";
+        depthText.text = $"Depth Y: {depthMeter:F0}";
     }
 
     public FishZone CurrentZone
